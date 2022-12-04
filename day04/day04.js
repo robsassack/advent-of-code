@@ -4,21 +4,13 @@ let file = fs.readFileSync('./input.txt', 'utf8');
 let input = file.split('\n');
 
 const fullyContains = (a, b) => {
-  if (a.every((item) => b.includes(item))) {
-    return true;
-  } else if (b.every((item) => a.includes(item))) {
-    return true;
-  }
-  return false;
+  // checks if a contains b or b contains a
+  return (a.every((item) => b.includes(item))) || (b.every((item) => a.includes(item)));
 }
 
 const overlap = (a, b) => {
-  if (a.some((item) => b.includes(item))) {
-    return true;
-  } else if (b.some((item) => a.includes(item))) {
-    return true;
-  }
-  return false;
+  // checks if a and b have any overlapping values
+  return (a.some((item) => b.includes(item))) || (b.some((item) => a.includes(item)));
 }
 
 let full = 0;
