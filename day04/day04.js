@@ -19,8 +19,7 @@ let assignments = [];
 
 input.forEach((line) => {
   let section = line.split(',');
-  let newAssignment = [];
-  section.forEach((pair) => {
+  let newAssignment = section.map((pair) => {
     let newPair = [];
     let range = pair.split('-');
     const start = parseInt(range[0]);
@@ -28,7 +27,7 @@ input.forEach((line) => {
     for (let i = start; i <= end; i++) {
       newPair.push(i);
     }
-    newAssignment.push(newPair);
+    return newPair;
   })
   assignments.push(newAssignment);
 })
