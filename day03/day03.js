@@ -1,13 +1,7 @@
-var fs = require('fs');
-let input;
-
+const fs = require('fs');
 // read input file
-try {
-    var data = fs.readFileSync('./input.txt', 'utf8');
-    input = data.toString();
-} catch(e) {
-    console.log(err);
-}
+let file = fs.readFileSync('./input.txt', 'utf8');
+let input = file.split('\n');
 
 function getPriority(char) {
   // regex test if lowercase
@@ -20,8 +14,6 @@ function getPriority(char) {
     return 0;
   }
 }
-
-input = input.split('\n');
 
 // Part 1
 let sum = 0;

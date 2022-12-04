@@ -1,15 +1,8 @@
-var fs = require('fs');
-let input;
-
+const fs = require('fs');
 // read input file
-try {
-    var data = fs.readFileSync('./input.txt', 'utf8');
-    input = data.toString();
-} catch(e) {
-    console.log(err);
-}
+let file = fs.readFileSync('./input.txt', 'utf8');
+let input = file.split('\n');
 
-input = input.split('\n');
 let sums = [0];
 let index = 0;
 

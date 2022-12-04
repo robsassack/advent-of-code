@@ -1,13 +1,7 @@
-var fs = require('fs');
-let input;
-
+const fs = require('fs');
 // read input file
-try {
-    var data = fs.readFileSync('./input.txt', 'utf8');
-    input = data.toString();
-} catch(e) {
-    console.log(err);
-}
+let file = fs.readFileSync('./input.txt', 'utf8');
+let input = file.split('\n');
 
 const fullyContains = (a, b) => {
   if (a.every((item) => b.includes(item))) {
@@ -27,7 +21,6 @@ const overlap = (a, b) => {
   return false;
 }
 
-input = input.split('\n');
 let full = 0;
 let overlaps = 0;
 let assignments = [];
