@@ -27,38 +27,29 @@ function testVisible(x, y) {
   let xMinus = true;
   let yPlus = true;
   let yMinus = true;
-  // console.log('x: ' + x + ', y: ' + y + ', unit: ' + unit)
   // check all spots in +x
-  // process.stdout.write("+x: ");
   for (let i=x+1; i<grid.length; i++) {
-    // process.stdout.write(grid[i][y] + ',');
     if (grid[i][y] >= unit) {
       xPlus = false;
       break;
     }
   }
   // check all spots in -x
-  // process.stdout.write("\n-x: ");
   for (let i=x-1; i>=0; i--) {
-    // process.stdout.write(grid[i][y] + ',');
     if (grid[i][y] >= unit) {
       xMinus = false;
       break;
     }
   }
   // check all spots in +y
-  // process.stdout.write("\n+y: ");
   for (let i=y+1; i<grid[x].length; i++) {
-    // process.stdout.write(grid[x][i] + ',');
     if (grid[x][i] >= unit) {
       yPlus = false;
       break;
     }
   }
   // check all spots in -y
-  // process.stdout.write("\n-y: ");
   for (let i=y-1; i>=0; i--) {
-    // process.stdout.write(grid[x][i] + ',');
     if (grid[x][i] >= unit) {
       yMinus = false;
       break;
@@ -67,13 +58,7 @@ function testVisible(x, y) {
   if (xPlus == false && xMinus == false && yPlus == false && yMinus == false) {
     visible[x][y] = false;
   }
-  // console.log('\n' + xPlus + ', ' + xMinus + ', ' + yPlus + ', ' + yMinus)
-  // console.log('\nvisible: ' + visible[x][y]);
-  // console.log('\n---------------');
 }
-
-// console.log(grid);
-// console.log(visible);
 
 function calcScenicScore(x, y) {
   let unit = grid[x][y];
@@ -82,46 +67,35 @@ function calcScenicScore(x, y) {
   let xMinus = 0;
   let yPlus = 0;
   let yMinus = 0;
-  // console.log('x: ' + x + ', y: ' + y + ', unit: ' + unit)
   // check all spots in +x
-  // process.stdout.write("+x: ");
   for (let i=x+1; i<grid.length; i++) {
-    // process.stdout.write(grid[i][y] + ',');
     xPlus++;
     if (grid[i][y] >= unit) {
       break;
     }
   }
   // check all spots in -x
-  // process.stdout.write("\n-x: ");
   for (let i=x-1; i>=0; i--) {
-    // process.stdout.write(grid[i][y] + ',');
     xMinus++;
     if (grid[i][y] >= unit) {
       break;
     }
   }
   // check all spots in +y
-  // process.stdout.write("\n+y: ");
   for (let i=y+1; i<grid[x].length; i++) {
-    // process.stdout.write(grid[x][i] + ',');
     yPlus++;
     if (grid[x][i] >= unit) {
       break;
     }
   }
   // check all spots in -y
-  // process.stdout.write("\n-y: ");
   for (let i=y-1; i>=0; i--) {
-    // process.stdout.write(grid[x][i] + ',');
     yMinus++;
     if (grid[x][i] >= unit) {
       break;
     }
   }
-  // console.log('\n' + xPlus + ', ' + xMinus + ', ' + yPlus + ', ' + yMinus)
   scenicScores[x][y] = xPlus * xMinus * yPlus * yMinus;
-  // console.log('\n---------------');
 }
 
 // Part 1
