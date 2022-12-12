@@ -1,6 +1,6 @@
 const fs = require('fs');
 // read input file
-const file = fs.readFileSync('./testInput2.txt', 'utf8');
+const file = fs.readFileSync('./input.txt', 'utf8');
 const input = file.split('\n');
 
 function calcDistance(x, y) {
@@ -16,6 +16,7 @@ input.forEach((line) => {
   let direction = motion[0];
   let distance = parseInt(motion[1]);
   for (let i=0; i<distance; i++) {
+    // move head based on instruction given
     headVisited.push([head[0], head[1]]);
     switch (direction) {
       case 'U':
@@ -32,10 +33,38 @@ input.forEach((line) => {
         break;
     }
     let headToTail = calcDistance(head, tail);
-    // if head is far away from tail, move tail closer to head
     if (headToTail >= 2) {
-      // move to one position behind head
-      tail = headVisited[headVisited.length - 1];
+      // if head above tail
+      if (head[1] > tail[1] && head[0] === tail[0]) {
+        tail[1]++;
+      }
+      // if head below tail
+      else if (head[1] < tail[1] && head[0] === tail[0]) {
+        tail[1]--;
+      }
+      // if head to the right of tail
+      else if (head[0] > tail[0] && head[1] === tail[1]) {
+        tail[0]++;
+      }
+      // if head to the left of tail
+      else if (head[0] < tail[0] && head[1] === tail[1]) {
+        tail[0]--;
+      } else {
+        // if head is diagonal to tail
+        if (head[0] > tail[0] && head[1] > tail[1]) {
+          tail[0]++;
+          tail[1]++;
+        } else if (head[0] > tail[0] && head[1] < tail[1]) {
+          tail[0]++;
+          tail[1]--;
+        } else if (head[0] < tail[0] && head[1] > tail[1]) {
+          tail[0]--;
+          tail[1]++;
+        } else if (head[0] < tail[0] && head[1] < tail[1]) {
+          tail[0]--;
+          tail[1]--;
+        }
+      }
       tailVisited.push([tail[0], tail[1]]);
     }
   }
