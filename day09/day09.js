@@ -49,17 +49,14 @@ function moveNode(leader, follower) {
     if (leader[1] > follower[1] && leader[0] === follower[0]) {
       follower[1]++;
     }
-
     // if head below tail
     else if (leader[1] < follower[1] && leader[0] === follower[0]) {
       follower[1]--;
     }
-
     // if head to the right of tail
     else if (leader[0] > follower[0] && leader[1] === follower[1]) {
       follower[0]++;
     }
-
     // if head to the left of tail
     else if (leader[0] < follower[0] && leader[1] === follower[1]) {
       follower[0]--;
