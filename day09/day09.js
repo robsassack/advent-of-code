@@ -8,8 +8,8 @@ function calcDistance(x, y) {
 }
 
 let head = [0, 0];
-let tails = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]];
-let tailsVisited = [[[0, 0]], [[0, 0]], [[0, 0]], [[0, 0]], [[0, 0]], [[0, 0]], [[0, 0]], [[0, 0]], [[0, 0]]];
+let tails = Array.from({length: 9}, () => [0, 0]);
+let tailsVisited = Array.from({length: 9}, () => [[0, 0]]);
 input.forEach((line) => {
   let motion = line.split(' ');
   let direction = motion[0];
