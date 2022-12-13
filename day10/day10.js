@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { PassThrough } = require('stream');
 // read input file
 const file = fs.readFileSync('./input.txt', 'utf8');
 const input = file.split('\n');
