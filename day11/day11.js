@@ -31,7 +31,7 @@ input.forEach((monkey) => {
 })
 
 // play rounds
-for (let x=0; x<20; x++) {
+for (let x=0; x<1; x++) {
   for (let y=0; y<monkeys.length; y++) {
     // console.log(`Monkey ${y}:`);
     for (let z=0; z<monkeys[y].items.length; z++) {
@@ -58,7 +58,10 @@ for (let x=0; x<20; x++) {
         newItem = num1 * num2;
       }
       // console.log(`    Monkey ${operand}s the worry levels of the two items, resulting in a worry level of ${newItem}.`);
-      newItem = Math.floor(newItem / 3);
+      // use modulo with a reduced number to avoid overflow
+      newItem = newItem % (
+        monkeys.reduce((a, b) => a*b.test, 1)
+      )
       // console.log(`    Monkey gets bored with item. Worry level is divided by 3 to ${newItem}.`);
       if (newItem % monkeys[y].test === 0) {
         // console.log(`    Current worry level is divisible by ${monkeys[y].test}.`);
