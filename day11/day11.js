@@ -3,6 +3,8 @@ const fs = require('fs');
 const file = fs.readFileSync('./input.txt', 'utf8');
 const input = file.split('\n\n');
 
+// change rounds number based on if doing part 1 or 2
+let rounds = 10000;
 let monkeys = [];
 input.forEach((monkey) => {
   let info = monkey.split('\n');
@@ -31,7 +33,7 @@ input.forEach((monkey) => {
 })
 
 // play rounds
-for (let x=0; x<1; x++) {
+for (let x=0; x<rounds; x++) {
   for (let y=0; y<monkeys.length; y++) {
     // console.log(`Monkey ${y}:`);
     for (let z=0; z<monkeys[y].items.length; z++) {
@@ -58,7 +60,9 @@ for (let x=0; x<1; x++) {
         newItem = num1 * num2;
       }
       // console.log(`    Monkey ${operand}s the worry levels of the two items, resulting in a worry level of ${newItem}.`);
-      // use modulo with a reduced number to avoid overflow
+      // division used for part 1
+      // newItem = newItem / 3;
+      // use modulo with a reduced number to avoid overflow for part 2
       newItem = newItem % (
         monkeys.reduce((a, b) => a*b.test, 1)
       )
