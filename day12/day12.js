@@ -58,20 +58,11 @@ function getNeighbors(x, y) {
   return valid;
 }
 
-// debug stuff
-// let testCoord = [1, 5];
-// let testNeighbors = neighbors(testCoord[0], testCoord[1]);
-// console.log(`${testCoord} - ${graph[testCoord[0]][testCoord[1]]} - ${height(graph[testCoord[0]][testCoord[1]])}`);
-// console.log('--------------');
-// testNeighbors.forEach((item) => {
-//   console.log(`${item} - ${graph[item[0]][item[1]]} - ${height(graph[item[0]][item[1]])}`);
-// })
-
-let visited = graph.map((row) => row.map((item) => false));
-let queue = [];
-
 // use bfs to find shortest path
 function bfs(start, end) {
+  let visited = graph.map((row) => row.map((item) => false));
+  let queue = [];
+
   queue.push([start, 0]);
   while (queue.length > 0) {
     let current = queue.shift();
@@ -94,3 +85,25 @@ function bfs(start, end) {
 
 // Part 1
 console.log("Shortest path: " + bfs(start, end));
+
+// Part 2
+let startingSpots = [];
+let startingLengths = [];
+// get all spots that start with 'a'
+for (let i = 0; i < graph.length; i++) {
+  for (let j = 0; j < graph[i].length; j++) {
+    if (graph[i][j] === 'a') {
+      startingSpots.push([i, j]);
+    }
+  }
+}
+
+// get shortest path for each starting spot
+startingSpots.forEach((spot) => {
+  let result = bfs(spot, end);
+  if (result !== -1) {
+    startingLengths.push(result);
+  }
+});
+
+console.log("Shortest path from 'a' spots: " + startingLengths.sort()[0]);
